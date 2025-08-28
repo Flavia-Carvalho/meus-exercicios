@@ -1,0 +1,51 @@
+inventario = []
+
+while True:
+    print("\n1-Adicionar 2-Remover 3-Listar 4-Sair")
+    opcao = input("Escolha uma opção: ")
+
+    if opcao == "1":
+        nome = input("Qual o nome do produto?: ")
+        try:
+            qtd = int(input("Qtd: "))
+        except ValueError:
+            print("Digite um número válido.")
+            continue
+
+        # Verifica se já existe e soma quantidade
+        for item in inventario:
+            if item[0].lower() == nome.lower():
+                item[1] += qtd
+                break
+        else:
+            inventario.append([nome, qtd])
+
+    elif opcao == "2":
+        nome = input("Qual o nome do produto?: ")
+        try:
+            qtd = int(input("Qtd a remover: "))
+        except ValueError:
+            print("Digite um número válido.")
+            continue
+
+        for item in inventario:
+            if item[0].lower() == nome.lower():
+                item[1] -= qtd
+                if item[1] <= 0:
+                    inventario.remove(item)
+                break
+        else:
+            print("Item não encontrado.")
+
+    elif opcao == "3":
+        if not inventario:
+            print("Inventário vazio.")
+        else:
+            for item in inventario:
+                print(item[0], "-", item[1])
+
+    elif opcao == "4":
+        break
+
+    else:
+        print("Opção inválida.")
