@@ -1,0 +1,34 @@
+from statistics import mean
+
+# Lista de alunos (nome, notas, frequência)
+turma = [
+    {"nome": "Ana", "notas": [9, 8.5, 9.5], "frequencia": 95},
+    {"nome": "Bruno", "notas": [6.5, 7, 6], "frequencia": 80},
+    {"nome": "Clara", "notas": [4, 5, 3.5], "frequencia": 85},
+    {"nome": "Diego", "notas": [8, 8.5, 8], "frequencia": 70},
+]
+
+
+def analisar_turma(turma):
+    print(" Analisador de Desempenho da Turma\n")
+
+    for aluno in turma:
+        media = mean(aluno["notas"])
+        freq = aluno["frequencia"]
+
+        # Regras de negócio
+        if media >= 8 and freq >= 90:
+            status = " Destaque"
+        elif 5 <= media < 8 and freq >= 75:
+            status = " Recuperação"
+        elif media < 5 or freq < 75:
+            status = "Reprovado"
+        else:
+            status = "Aprovado"
+
+        print(f"{aluno['nome']:<10} | Média: {media:.1f} | "
+              f"Frequência: {freq}% | Status: {status}")
+
+# Executar
+if __name__ == "__main__":
+    analisar_turma(turma)            
